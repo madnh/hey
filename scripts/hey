@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+RUNNING_DIR=$(pwd)
+SCRIPTS_DIR=$(dirname "$0")
+PROJECT_DIR=$(dirname "$SCRIPTS_DIR")
+
+
+. "${SCRIPTS_DIR}/_colors.sh"
+. "${SCRIPTS_DIR}/_icons.sh"
+
+\cat "${SCRIPTS_DIR}/_banner.txt"
+echo
+
+. "${SCRIPTS_DIR}/_functions.sh"
+
+ACTION=$@
+
+if [ -z "${ACTION}" ]; then
+    ACTION="help"
+fi
+
+case "${ACTION}" in
+  "foo") . "${SCRIPTS_DIR}/foo.func.sh" ;;
+  "bar") . "${SCRIPTS_DIR}/bar.func.sh" ;;
+  "debug") . "${SCRIPTS_DIR}/debug.func.sh" ;;
+
+  # Other functions here
+
+  "help")
+    . "${SCRIPTS_DIR}/help.func.sh" ;;
+
+  *)
+      echo
+      errorMessage "Action is un-supported !!!"
+      echo
+      echo "----------"
+      echo
+
+      . "${SCRIPTS_DIR}/help.func.sh"
+      exit 1
+      ;;
+esac

@@ -1,0 +1,10 @@
+Usage: hey <action to do>
+
+Examples:
+    hey foo
+    hey bar
+
+Availabe Actions:
+    foo     Fuu function
+    bar     Bar functions    
+    debug   Debug script

@@ -1,0 +1,1 @@
+Change working dir to this folder, then run command `hey foo`
